@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:LastTry.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:LastTry.Views"
+        d:DesignWidth="400" d:DesignHeight="300"
+        x:Class="LastTry.Views.NewDeviceWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Add_New_Device">
+        <StackPanel Margin="20">
+            <TextBlock Text="Device Name:"/>
+            <TextBox x:Name="DeviceNameTextBox" Margin="0 10"/>
+            <TextBlock Text="Room Name:"/>
+            <TextBox x:Name="RoomNameTextBox" Margin="0 10"/>
+            <TextBlock Text="Background Color:"/>
+            <ComboBox x:Name="BackgroundColorComboBox" Margin="0 10">
+                <ComboBoxItem Content="LightCyan" />
+                <ComboBoxItem Content="LightYellow" />
+                <ComboBoxItem Content="LightGreen" />
+				<ComboBoxItem Content="Azure" />
+				<ComboBoxItem Content="DarkSalmon" />
+				<ComboBoxItem Content="IndianRed" />
+				<ComboBoxItem Content="MediumAquamarine" />
+            </ComboBox>
+            <Button Content="OK" HorizontalAlignment="Center" Margin="10" Click="OkButton_Click"/>
+    </StackPanel>
+</Window>

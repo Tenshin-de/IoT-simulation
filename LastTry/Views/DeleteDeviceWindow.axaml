@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:LastTry.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:LastTry.Views"
+        d:DesignWidth="400" d:DesignHeight="200"
+        x:Class="LastTry.Views.DeleteDeviceWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Delete_Device">
+	<StackPanel Margin="20">
+		<TextBlock Text="Device Name:"/>
+		<TextBox x:Name="DeviceNameTextBox" Margin="0 10"/>
+		<TextBlock Text="Room Name:"/>
+		<TextBox x:Name="RoomNameTextBox" Margin="0 10"/>
+		<Button Content="Delete" HorizontalAlignment="Center" Margin="10" Click="DeleteButton_Click"/>
+	</StackPanel>
+</Window>

@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:LastTry.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="LastTry.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Main_Window">
+	<Window.DataContext>
+		<vm:MainViewModel/>
+	</Window.DataContext>
+	<Grid>
+		<TabControl Margin="10">
+			<TabItem Header="Пристрої">
+				<StackPanel>
+					<WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<Button x:Name="AddButton"
+                                Command="{Binding AddButtonCommand}"
+                                Content="Додати новий пристрій"
+                                HorizontalAlignment="Center"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                                Margin="10"/>
+						<Button x:Name="DeleteButton"
+                                Command="{Binding DeleteButtonCommand}"
+                                Content="Видалити пристрій"
+                                HorizontalAlignment="Center"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+					</WrapPanel>
+					<ItemsControl ItemsSource="{Binding Devices}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Border Background="{Binding BackgroundColor}" Margin="10" Padding="20" CornerRadius="10" Width="200" Height="150">
+									<StackPanel Margin="10">
+										<TextBlock Text="{Binding DeviceName}" FontWeight="Bold"/>
+										<TextBlock Text="{Binding RoomName}"/>
+										<Button Content="{Binding Status}"
+                                                Command="{Binding DataContext.ToggleDeviceCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                CommandParameter="{Binding}"
+                                                HorizontalAlignment="Center"
+                                                Margin="5"/>
+									</StackPanel>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</StackPanel>
+			</TabItem>
+			<TabItem Header="Кімнати">
+				<TabControl ItemsSource="{Binding RoomViewModels}">
+					<TabControl.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding RoomName}" />
+						</DataTemplate>
+					</TabControl.ItemTemplate>
+					<TabControl.ContentTemplate>
+						<DataTemplate>
+							<DataGrid ItemsSource="{Binding Devices}" AutoGenerateColumns="True" />
+						</DataTemplate>
+					</TabControl.ContentTemplate>
+				</TabControl>
+			</TabItem>
+			<TabItem Header="Status Page">
+				<DataGrid x:Name="Devices" ItemsSource="{Binding Devices}" AutoGenerateColumns="True" />
+			</TabItem>
+			<TabItem Header="Logs">
+				<DataGrid x:Name="DeviceLogs" ItemsSource="{Binding DeviceLogs}" AutoGenerateColumns="True" />
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
